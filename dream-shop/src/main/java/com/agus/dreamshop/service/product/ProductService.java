@@ -12,6 +12,7 @@ import com.agus.dreamshop.repository.ProductRepository;
 import com.agus.dreamshop.request.AddProductRequest;
 import com.agus.dreamshop.request.ProductUpdateRequest;
 import lombok.RequiredArgsConstructor;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
