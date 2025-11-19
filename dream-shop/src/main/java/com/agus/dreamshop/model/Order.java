@@ -1,5 +1,6 @@
 package com.agus.dreamshop.model;
 
+import com.agus.dreamshop.enums.OrderStatus;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
