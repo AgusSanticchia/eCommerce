@@ -16,7 +16,7 @@ public class OrderItem {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private int quantity;
+    private int stock;
     private BigDecimal price;
 
     @ManyToOne
@@ -27,10 +27,10 @@ public class OrderItem {
     @JoinColumn(name = "product_id")
     private Product product;
 
-    public OrderItem(Order order, Product product, int quantity, BigDecimal price) {
+    public OrderItem(Order order, Product product, int stock, BigDecimal price) {
         this.order = order;
         this.product = product;
-        this.quantity = quantity;
+        this.stock = stock;
         this.price = price;
 
     }

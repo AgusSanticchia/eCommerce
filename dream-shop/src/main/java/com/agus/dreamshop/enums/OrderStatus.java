@@ -1,4 +1,9 @@
 package com.agus.dreamshop.enums;
 
-public enum OrderStatus {
+public enum OrderStatus  {
+    PENDING,
+    PROCESSING,
+    SHIPPED,
+    DELIVERED,
+    CANCELED
 }
