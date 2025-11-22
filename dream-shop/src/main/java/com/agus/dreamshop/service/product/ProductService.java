@@ -2,6 +2,7 @@ package com.agus.dreamshop.service.product;
 
 import com.agus.dreamshop.dto.ImageDto;
 import com.agus.dreamshop.dto.ProductDto;
+import com.agus.dreamshop.exception.AlreadyExistsException;
 import com.agus.dreamshop.exception.ProductNotFoundException;
 import com.agus.dreamshop.model.Category;
 import com.agus.dreamshop.model.Image;
@@ -29,6 +30,10 @@ public class ProductService implements IProductService {
 
     @Override
     public Product addProduct(AddProductRequest request) {
+        if (productExists(request.getBrand(), request.getName())) {
+            throw new AlreadyExistsException(request.getBrand() + " " + request.getName() + " already exists, you may update this product instead!");
+        }
+
         Category category = Optional.ofNullable(categoryRepository.findByName(request.getCategory().getName()))
                 .orElseGet(() -> {
                     Category newCategory = new Category(request.getCategory().getName());
@@ -37,6 +42,10 @@ public class ProductService implements IProductService {
                 });
         request.setCategory(category);
         return productRepository.save(createProduct(request, category));
+    }
+
+    private boolean productExists(String name, String brand) {
+        return productRepository.existsByNameAndBrand(name, brand);
     }
 
     public Product createProduct(AddProductRequest request, Category category) {

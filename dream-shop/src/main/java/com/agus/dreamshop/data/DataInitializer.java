@@ -23,6 +23,13 @@ public class DataInitializer implements ApplicationListener<ApplicationReadyEven
             if (userRepository.existsByEmail(defaultEmail)) {
                 continue;
             }
+            User user = new User();
+            user.setFirstName("The User");
+            user.setLastName("User " + i);
+            user.setEmail(defaultEmail);
+            user.setPassword("123456");
+            userRepository.save(user);
+            System.out.println("Default user: " + i + " created.");
         }
     }
 }
